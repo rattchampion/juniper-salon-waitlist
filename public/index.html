@@ -3,31 +3,88 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Temporal assessment starter</title>
+    <title>Juniper Salon · Filling cancelled spots</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
   <body>
     <main>
-      <p class="eyebrow">Temporal assessment starter</p>
-      <h1>Your environment is connected.</h1>
+      <p class="eyebrow">Juniper Salon</p>
+      <h1>Filling cancelled spots</h1>
       <p class="intro">
-        This neutral demonstration starts a Workflow, waits durably for a
-        Signal, and then completes. Replace it with the experience your
-        customer needs.
+        When someone cancels, tell us the spot. We'll text the right people on
+        your waitlist one at a time, keep track of who answered, and let you
+        know how it's going.
       </p>
+
+      <div id="banner" class="banner" hidden></div>
+
       <section class="card">
-        <h2 id="phase">Ready</h2>
-        <p id="message">Start the demonstration to verify the setup.</p>
-        <button id="start">Start demo Workflow</button>
-        <button id="continue" hidden>Send continue Signal</button>
-        <p class="request-id" id="request-id"></p>
+        <h2>A spot opened up</h2>
+        <form id="new-spot" class="new-spot">
+          <label>
+            Cancelled service
+            <select id="service"></select>
+          </label>
+          <label>
+            Stylist
+            <select id="stylist"></select>
+          </label>
+          <label>
+            Appointment time
+            <input id="startsAt" type="datetime-local" required />
+          </label>
+          <label>
+            Waiting time for replies
+            <select id="timing">
+              <option value="demo">Demo: 20 seconds</option>
+              <option value="real">Real: 15 min same day, 2 hours later</option>
+            </select>
+          </label>
+          <button type="submit" id="start">Start filling this spot</button>
+        </form>
+        <p class="hint">
+          Texts go out on their own once you start; nobody needs to approve
+          each one. The demo setting only shortens the wait for replies so you
+          can watch it work.
+        </p>
+        <p id="form-error" class="error" hidden></p>
       </section>
-      <p class="footer">
-        Inspect the execution at
-        <a href="http://localhost:8233" target="_blank">localhost:8233</a>.
-      </p>
+
+      <section class="card">
+        <h2>Open spots</h2>
+        <div id="spots"><p class="empty">Nothing yet. Start a spot above.</p></div>
+      </section>
+
+      <section class="card">
+        <h2>Texts sent <span class="tag">simulated</span></h2>
+        <p class="hint" style="margin-top: -8px; margin-bottom: 14px">
+          In the real salon these would come from your salon phone. Open an
+          offer link to see what a client sees.
+        </p>
+        <div id="texts" class="texts"><p class="empty">No texts yet.</p></div>
+      </section>
+
+      <section class="card">
+        <details>
+          <summary>Waitlist <span class="tag">stand-in for your Google Sheet</span></summary>
+          <div style="overflow-x: auto; margin-top: 14px">
+            <table>
+              <thead>
+                <tr><th>#</th><th>Name</th><th>Wants</th><th>Stylist</th><th>Free</th><th>Notes</th></tr>
+              </thead>
+              <tbody id="waitlist"></tbody>
+            </table>
+          </div>
+        </details>
+      </section>
+
+      <div class="footer">
+        <span>
+          Behind the scenes: <a href="http://localhost:8233" target="_blank" rel="noreferrer">Temporal Web UI</a>
+        </span>
+        <button class="quiet" id="reset" type="button">Reset demo data</button>
+      </div>
     </main>
     <script src="/app.js"></script>
   </body>
 </html>
-

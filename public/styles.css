@@ -1,19 +1,78 @@
 :root {
-  color: #222c29;
-  background: #f3f0e9;
-  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  --bg: #f7f2ec;
+  --card: #fffdf9;
+  --line: #e4dccf;
+  --text: #3a3733;
+  --muted: #7a746b;
+  --green: #6b8f71;
+  --green-dark: #4f7256;
+  --green-soft: #e6eee6;
+  --terracotta: #b9694b;
+  --terracotta-soft: #f6e4db;
+  --sand: #efe7da;
+  color: var(--text);
+  background: var(--bg);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif;
 }
 * { box-sizing: border-box; }
 body { margin: 0; }
-main { width: min(680px, calc(100% - 32px)); margin: 80px auto; }
-.eyebrow { color: #47685d; font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; }
-h1 { max-width: 620px; margin: 10px 0; font-family: Georgia, serif; font-size: clamp(2.7rem, 7vw, 4.8rem); font-weight: 500; line-height: 1; }
-.intro { color: #5c6662; font-size: 1.05rem; line-height: 1.6; }
-.card { margin-top: 32px; padding: 28px; border: 1px solid #d5cfc2; border-radius: 16px; background: #fffdf8; }
-.card h2 { margin-top: 0; text-transform: capitalize; }
-button { margin-right: 8px; padding: 11px 17px; border: 0; border-radius: 999px; background: #315f50; color: white; cursor: pointer; font: inherit; font-weight: 700; }
-button:disabled { opacity: 0.55; }
-.request-id, .footer { color: #737975; font-size: 0.82rem; overflow-wrap: anywhere; }
-.footer { text-align: center; }
-a { color: inherit; }
+main { width: min(920px, calc(100% - 32px)); margin: 40px auto 80px; }
+a { color: var(--green-dark); }
+.eyebrow { color: var(--green-dark); font-size: 0.75rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; margin: 0; }
+h1 { margin: 8px 0 6px; font-family: Georgia, "Iowan Old Style", serif; font-size: clamp(2rem, 5vw, 3rem); font-weight: 500; line-height: 1.1; }
+h2 { margin: 0 0 14px; font-family: Georgia, "Iowan Old Style", serif; font-size: 1.35rem; font-weight: 500; }
+.intro { color: var(--muted); font-size: 1.05rem; line-height: 1.55; margin: 0 0 24px; max-width: 640px; }
+.card { margin-top: 24px; padding: 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--card); }
+.banner { margin-top: 18px; padding: 14px 18px; border-radius: 12px; background: var(--terracotta-soft); border: 1px solid var(--terracotta); color: #7a3f27; font-weight: 600; line-height: 1.45; }
+.banner[hidden] { display: none; }
 
+form.new-spot { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; align-items: end; }
+label { display: grid; gap: 6px; min-width: 0; font-size: 0.85rem; font-weight: 700; color: var(--muted); }
+select, input { width: 100%; min-width: 0; font: inherit; font-weight: 500; color: var(--text); padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; background: white; }
+button { padding: 11px 18px; border: 0; border-radius: 999px; background: var(--green-dark); color: white; cursor: pointer; font: inherit; font-weight: 700; }
+button:hover { background: #416347; }
+button.secondary { background: transparent; color: var(--terracotta); border: 1px solid var(--terracotta); padding: 8px 14px; font-size: 0.88rem; }
+button.secondary:hover { background: var(--terracotta-soft); }
+button.quiet { background: transparent; color: var(--muted); border: 1px solid var(--line); padding: 7px 12px; font-size: 0.8rem; font-weight: 600; }
+button.quiet:hover { background: var(--sand); }
+button:disabled { opacity: 0.55; cursor: default; }
+.hint { color: var(--muted); font-size: 0.85rem; margin: 12px 0 0; line-height: 1.45; }
+.error { color: #9b3a1f; font-weight: 600; margin: 10px 0 0; }
+
+.spot { border: 1px solid var(--line); border-radius: 14px; padding: 18px; margin-top: 14px; background: white; }
+.spot-head { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: flex-start; }
+.spot-title { font-weight: 700; font-size: 1.1rem; }
+.spot-sub { color: var(--muted); font-size: 0.9rem; margin-top: 2px; }
+.chip { display: inline-block; padding: 6px 12px; border-radius: 999px; font-size: 0.85rem; font-weight: 700; }
+.chip.waiting { background: var(--sand); color: #6a5a40; }
+.chip.good { background: var(--green-soft); color: var(--green-dark); }
+.chip.warn { background: var(--terracotta-soft); color: #8a4a30; }
+.chip.neutral { background: #ece9e4; color: var(--muted); }
+.cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin-top: 14px; }
+.cols h3 { margin: 0 0 6px; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.cols p, .cols li { margin: 0; font-size: 0.92rem; line-height: 1.5; }
+ul.plain { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; }
+ul.timeline li { display: grid; grid-template-columns: 92px 1fr; gap: 10px; }
+.when { white-space: nowrap; }
+.when { color: var(--muted); font-variant-numeric: tabular-nums; }
+.actions { margin-top: 14px; }
+
+.texts { display: grid; gap: 10px; }
+.text-msg { border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; background: white; font-size: 0.92rem; line-height: 1.45; overflow-wrap: anywhere; }
+.text-msg.failed { border-color: var(--terracotta); background: var(--terracotta-soft); }
+.text-meta { color: var(--muted); font-size: 0.78rem; margin-bottom: 4px; }
+table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; }
+details > summary { cursor: pointer; font-family: Georgia, serif; font-size: 1.2rem; }
+.tag { display: inline-block; font-size: 0.72rem; padding: 2px 8px; border-radius: 999px; background: var(--sand); color: #6a5a40; margin-right: 4px; }
+.footer { margin-top: 28px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; color: var(--muted); font-size: 0.82rem; }
+.empty { color: var(--muted); font-style: italic; }
+
+/* Client page */
+.claim { width: min(520px, calc(100% - 32px)); margin: 56px auto; }
+.claim .card { margin-top: 18px; text-align: center; padding: 32px 26px; }
+.claim h1 { font-size: 1.9rem; }
+.claim .big { font-size: 1.2rem; font-weight: 700; margin: 14px 0 4px; }
+.claim .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+.claim .small { color: var(--muted); font-size: 0.88rem; margin-top: 14px; }

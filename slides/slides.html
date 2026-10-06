@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Filling cancelled spots at Juniper Salon</title>
+<style>
+  @page { size: 1280px 720px; margin: 0; }
+  :root {
+    --bg: #f7f2ec; --card: #fffdf9; --line: #e4dccf; --text: #3a3733; --muted: #7a746b;
+    --green: #4f7256; --green-soft: #e6eee6; --terra: #b9694b; --terra-soft: #f6e4db; --sand: #efe7da;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, sans-serif; }
+  .slide { width: 1280px; height: 720px; padding: 56px 72px 48px; position: relative; page-break-after: always; overflow: hidden; background: var(--bg); }
+  .slide:last-child { page-break-after: auto; }
+  .eyebrow { color: var(--green); font-size: 15px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; margin: 0 0 14px; }
+  h1 { font-family: Georgia, "Iowan Old Style", serif; font-weight: 500; font-size: 40px; line-height: 1.15; margin: 0 0 22px; max-width: 1136px; }
+  h2 { font-family: Georgia, serif; font-weight: 500; font-size: 26px; margin: 0 0 10px; }
+  p { margin: 0; font-size: 22px; line-height: 1.45; }
+  .muted { color: var(--muted); }
+  .foot { position: absolute; left: 72px; right: 72px; bottom: 26px; display: flex; justify-content: space-between; color: var(--muted); font-size: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 18px; padding: 20px 26px; }
+  .grid { display: grid; gap: 20px; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+  .stat { font-family: Georgia, serif; font-size: 46px; color: var(--green); line-height: 1; margin-bottom: 8px; }
+  ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 14px; counter-reset: s; }
+  ol.steps li { counter-increment: s; display: grid; grid-template-columns: 42px 1fr; gap: 14px; align-items: start; font-size: 21px; line-height: 1.4; }
+  ol.steps li::before { content: counter(s); width: 42px; height: 42px; border-radius: 50%; background: var(--green); color: white; font-weight: 800; display: grid; place-items: center; font-size: 19px; }
+  ul.tight { margin: 0; padding-left: 22px; font-size: 19px; line-height: 1.45; }
+  ul.tight li { margin-bottom: 6px; }
+  .tag { display: inline-block; font-size: 14px; font-weight: 700; padding: 4px 12px; border-radius: 999px; background: var(--sand); color: #6a5a40; vertical-align: middle; margin-left: 8px; }
+  .tag.green { background: var(--green-soft); color: var(--green); }
+  .tag.terra { background: var(--terra-soft); color: #8a4a30; }
+  .shot { border-radius: 14px; border: 1px solid var(--line); box-shadow: 0 6px 24px rgba(58,55,51,0.08); }
+  .row { display: grid; grid-template-columns: 1.05fr 1fr; gap: 36px; align-items: center; }
+  .quote { border-left: 4px solid var(--terra); padding-left: 18px; font-family: Georgia, serif; font-size: 24px; line-height: 1.4; color: #5a4a3c; }
+</style>
+</head>
+<body>
+
+<!-- 1. The problem -->
+<section class="slide">
+  <p class="eyebrow">What we heard from you</p>
+  <h1>A cancelled spot shouldn't turn into a game of phone tag</h1>
+  <div class="row" style="grid-template-columns: 1fr 0.9fr; align-items: start;">
+    <div>
+      <ol class="steps">
+        <li>You or Carla notice the cancellation in Square.</li>
+        <li>You check the Google Sheet for someone who might fit.</li>
+        <li>You text them from the salon phone and wait for a reply.</li>
+        <li>If they say no, or don't answer, you start again.</li>
+      </ol>
+      <p style="margin-top: 22px;" class="quote">“Sometimes we lose track of who was contacted, and the opening stays empty.”</p>
+    </div>
+    <div class="grid" style="gap: 16px;">
+      <div class="card"><div class="stat">8 to 12</div><p>tricky cancellations a week, most with under 48 hours' notice</p></div>
+      <div class="card"><div class="stat">20 to 30</div><p>people on your waitlist at any time</p></div>
+      <div class="card"><p><strong>What would success look like?</strong> Fewer empty gaps, and less time spent chasing people.</p></div>
+    </div>
+  </div>
+  <div class="foot"><span>Juniper Salon · Cancelled-spot waitlist prototype</span><span>1</span></div>
+</section>
+
+<!-- 2. What it does -->
+<section class="slide">
+  <p class="eyebrow">What the prototype does</p>
+  <h1>You tell it a spot opened up. It does the chasing.</h1>
+  <div style="display:grid; grid-template-columns: 500px 1fr; gap: 40px; align-items: start;">
+    <ol class="steps">
+      <li><span>You enter the cancelled spot: service, stylist, time.</span></li>
+      <li><span>It texts the first person who fits, <strong>one at a time</strong>, earliest on the waitlist first. No need to approve each text.</span></li>
+      <li><span>They tap a link and choose <strong>yes or no</strong>. No account, easy on a phone.</span></li>
+      <li><span>The <strong>first yes gets the spot</strong>. Everyone else is told it's gone.</span></li>
+      <li><span>You see the whole story on one screen.</span></li>
+    </ol>
+    <div>
+      <img class="shot" src="assets/staff.png" style="width: 100%; display:block;" />
+      <p class="muted" style="font-size: 16px; margin: 10px 0 14px;">Your screen: who has the offer and how long is left, who was asked, who is next in line, and why someone was skipped.</p>
+      <div style="display:flex; gap: 18px; align-items:center;">
+        <img class="shot" src="assets/client.png" style="height: 150px; display:block;" />
+        <p class="muted" style="font-size: 16px;">What a client sees when she taps the link in her text.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Juniper Salon · Cancelled-spot waitlist prototype</span><span>2</span></div>
+</section>
+
+<!-- 3. Messy moments -->
+<section class="slide">
+  <p class="eyebrow">What we built for the messy moments</p>
+  <h1>It handles the things that go wrong, the way you described</h1>
+  <div class="grid g3" style="gap: 18px;">
+    <div class="card"><h2>Two people say yes</h2><p style="font-size:19px;">Only one gets the spot. The other is told right away it's gone.</p></div>
+    <div class="card"><h2>Nobody replies</h2><p style="font-size:19px;">After about 15 minutes for same-day spots, it tells them it's gone and moves on.</p></div>
+    <div class="card"><h2>A text doesn't go through</h2><p style="font-size:19px;">It tries again, then moves to the next person. You can see what happened.</p></div>
+    <div class="card"><h2>Filled another way</h2><p style="font-size:19px;">One button stops everything. Anyone waiting on an offer is told.</p></div>
+    <div class="card"><h2>Someone backs out</h2><p style="font-size:19px;">The spot reopens and goes to the next person in line.</p></div>
+    <div class="card" style="background: var(--terra-soft); border-color: var(--terra);"><h2>It stops working</h2><p style="font-size:19px;">A banner tells you within seconds, so you know to go back to the sheet and phone.</p></div>
+  </div>
+  <p class="muted" style="margin-top: 22px; font-size: 19px;">Always: no one is asked twice for the same spot, no one who asked not to be texted is contacted, and nobody with a clashing appointment is offered the spot.</p>
+  <div class="foot"><span>Juniper Salon · Cancelled-spot waitlist prototype</span><span>3</span></div>
+</section>
+
+<!-- 4. Real vs stand-in -->
+<section class="slide">
+  <p class="eyebrow">Being clear about what's real</p>
+  <h1>The process is real. The tool connections are stand-ins.</h1>
+  <div class="grid g3" style="gap: 20px; align-items: start;">
+    <div class="card">
+      <h2>Working now <span class="tag green">real</span></h2>
+      <ul class="tight">
+        <li>The step-by-step process and all the rules above</li>
+        <li>Waiting for replies, even if the system restarts</li>
+        <li>Your staff screen and the client's link page</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Stand-ins <span class="tag">simulated</span></h2>
+      <ul class="tight">
+        <li>Square: the calendar, clash check, and booking</li>
+        <li>Your Google Sheet waitlist</li>
+        <li>Texts from your salon phone</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h2>Not built yet <span class="tag terra">later</span></h2>
+      <ul class="tight">
+        <li>Adding people to the waitlist on this screen</li>
+        <li>Quiet hours for texting</li>
+        <li>Staff sign-in and extra-secure links</li>
+      </ul>
+    </div>
+  </div>
+  <div class="card" style="margin-top: 16px;">
+    <h2 style="font-size:22px;">Guesses we made. Please tell us if any are wrong:</h2>
+    <ul class="tight" style="columns: 2; column-gap: 40px; font-size: 18px;">
+      <li>If a client names a stylist, only that stylist counts.</li>
+      <li>For spots on later days, clients get 2 hours to reply.</li>
+      <li>No new offers in the last 30 minutes before an appointment.</li>
+      <li>Availability means morning, afternoon, or evening.</li>
+    </ul>
+  </div>
+  <div class="foot"><span>Juniper Salon · Cancelled-spot waitlist prototype</span><span>4</span></div>
+</section>
+
+<!-- 5. Next step -->
+<section class="slide">
+  <p class="eyebrow">A practical next step</p>
+  <h1>Two weeks on your real cancellations, with you in control</h1>
+  <div class="grid g2" style="gap: 24px; align-items: start;">
+    <div class="card">
+      <h2>What we'd do</h2>
+      <ol class="steps" style="gap: 12px;">
+        <li><span><strong>Week 1:</strong> connect to Square and your waitlist sheet, and count how many cancelled spots get filled today, and how fast.</span></li>
+        <li><span><strong>Week 1:</strong> run it quietly alongside you: it shows who it would text, and you keep texting by hand.</span></li>
+        <li><span><strong>Week 2:</strong> turn on automatic texts from your salon number for same-day spots, and compare.</span></li>
+      </ol>
+    </div>
+    <div class="grid" style="gap: 20px;">
+      <div class="card">
+        <h2>What we need from you</h2>
+        <ul class="tight">
+          <li>Check the four guesses on the last slide</li>
+          <li>A quiet-hours rule, if you want one</li>
+          <li>Which phone number texts should come from</li>
+        </ul>
+      </div>
+      <div class="card" style="background: var(--green-soft); border-color: #c5d6c6;">
+        <h2>How we'll know it's working</h2>
+        <p style="font-size: 20px;">Fewer empty gaps, and less time spent chasing people. You don't have a dollar figure yet, so we'll start by counting empty spots and staff time.</p>
+      </div>
+    </div>
+  </div>
+  <div class="foot"><span>Juniper Salon · Cancelled-spot waitlist prototype</span><span>5</span></div>
+</section>
+
+</body>
+</html>
